@@ -1,17 +1,15 @@
-﻿-- Companies with 200 billion in sales or more -- 
+
+-- Companies with 200 billion in sales or more -- 
 select name, sales
 from top_2k 
 where country = 'United States'
 and `sales` >= 200000000000;
 
 
-
-
 -- Companies sorted by profit -- 
 select name, profit
 from top_2k 
 order by profit desc;
-
 
 
 -- Calculating profit margin and sorting --
@@ -47,12 +45,6 @@ from top_2k
 group by country;
 
 
-
-
-
-
-
-
 -- Amount of times a country appears --
 select country, count(country) as count
 from top_2k
@@ -60,19 +52,12 @@ group by country
 order by count desc;
 
 
-
-
-
-
 -- Comparing U.S and China profits --
 select name, profit, country 
 from top_2k
 where country like '%United States%' and profit >= 10000000000
-
-
 union
-
-
 select name, profit, country 
 from top_2k
 where country like '%China%' and profit >= 10000000000;
+
