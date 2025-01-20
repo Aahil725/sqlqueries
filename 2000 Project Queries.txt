@@ -1,0 +1,78 @@
+﻿-- Companies with 200 billion in sales or more -- 
+select name, sales
+from top_2k 
+where country = 'United States'
+and `sales` >= 200000000000;
+
+
+
+
+-- Companies sorted by profit -- 
+select name, profit
+from top_2k 
+order by profit desc;
+
+
+
+-- Calculating profit margin and sorting --
+select name, profit, sales,
+(profit/sales) * 100 as profit_margin
+from top_2k
+order by profit_margin desc;
+
+
+-- Total number of companies in the U.S --
+select count(*) 
+as total_US_Companies
+from top_2k
+where country = 'United States'
+
+
+-- Order company names alphabetically –-
+select name 
+from top_2k 
+order by name asc;
+
+
+-- Price-to-Earnings (P/E) Ratio --
+select name, profit, `market value`,
+(`market value`/profit) as pe_ratio
+from top_2k
+order by pe_ratio desc;
+
+
+-- Average sales by country --
+select country, avg(sales) as avg_sales
+from top_2k
+group by country;
+
+
+
+
+
+
+
+
+-- Amount of times a country appears --
+select country, count(country) as count
+from top_2k
+group by country
+order by count desc;
+
+
+
+
+
+
+-- Comparing U.S and China profits --
+select name, profit, country 
+from top_2k
+where country like '%United States%' and profit >= 10000000000
+
+
+union
+
+
+select name, profit, country 
+from top_2k
+where country like '%China%' and profit >= 10000000000;
